@@ -9,7 +9,13 @@ import SwiftUI
 
 struct MagnificationGestureView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Example: Magnification Gesture")
+            .font(.headline)
+        Text("Hello, World!")
+            .font(.title)
+            .padding(40)
+            .background(Color.red)
+            .cornerRadius(10)
     }
 }
 
