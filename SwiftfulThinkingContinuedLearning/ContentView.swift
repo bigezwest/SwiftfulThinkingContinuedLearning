@@ -17,6 +17,9 @@ struct ContentView: View {
             .padding(.horizontal)
             .background(isComplete ? Color.green : Color.gray)
             .cornerRadius(10)
+            .onTapGesture {
+                isComplete.toggle()
+            }
     }
 }
 
