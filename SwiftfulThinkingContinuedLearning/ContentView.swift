@@ -17,7 +17,9 @@ struct ContentView: View {
             .padding(.horizontal)
             .background(isComplete ? Color.green : Color.gray)
             .cornerRadius(10)
-            .onLongPressGesture {
+            .onLongPressGesture (
+                minimumDuration: 1.0
+            ) {
                 isComplete.toggle()
             }
     }
