@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var isComplete: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        Text(isComplete ? "Completed" : "Not Completed")
+            .padding()
+            .padding(.horizontal)
+            .background(isComplete ? Color.green : Color.gray)
+            .cornerRadius(10)
+            .onTapGesture {
+                isComplete.toggle()
+            }
     }
 }
 
