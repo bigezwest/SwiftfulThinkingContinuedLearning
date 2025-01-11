@@ -18,7 +18,8 @@ struct ContentView: View {
             .background(isComplete ? Color.green : Color.gray)
             .cornerRadius(10)
             .onLongPressGesture (
-                minimumDuration: 1.0
+                minimumDuration: 1.0,
+                maximumDistance: 50
             ) {
                 isComplete.toggle()
             }
