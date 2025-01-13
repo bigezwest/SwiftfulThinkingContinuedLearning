@@ -29,6 +29,13 @@ struct MultipleSheetsBootcamp: View {
         }
     }
 }
+struct NextScreen: View {
+    @Binding var selectedModel: RandomModel
+    var body: some View {
+        Text(selectedModel.title)
+            .font(.largeTitle)
+    }
+}
 
 #Preview {
     MultipleSheetsBootcamp()
