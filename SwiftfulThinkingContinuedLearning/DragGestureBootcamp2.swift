@@ -10,6 +10,7 @@ import SwiftUI
 struct DragGestureBootcamp2: View {
     
     @State var startingOffsetY: CGFloat = UIScreen.main.bounds.height * 0.85
+    @State var currentDragOffsetY: CGFloat = 0
     
     var body: some View {
         ZStack {
@@ -17,6 +18,15 @@ struct DragGestureBootcamp2: View {
             
             MySignupView()
                 .offset(y: startingOffsetY)
+                .offset(y: currentDragOffsetY)
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            withAnimation(.spring()) {
+                                currentDragOffsetY = value.translation.height
+                            }
+                        }
+                    )
         }
         .ignoresSafeArea(edges: .bottom)
     }
