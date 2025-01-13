@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MaskBootcamp: View {
     
-    @State var rating: Int = 3
+    @State var rating: Int = 4
     
     var body: some View {
         ZStack {
@@ -18,6 +18,7 @@ struct MaskBootcamp: View {
                     Image(systemName: "star.fill")
                         .font(.largeTitle)
                         .foregroundColor(rating >= index ? Color.yellow : Color.gray)
+                        .onTapGesture { rating = index }
                 }
             }
         }
