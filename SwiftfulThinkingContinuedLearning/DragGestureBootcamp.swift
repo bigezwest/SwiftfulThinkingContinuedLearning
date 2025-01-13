@@ -33,9 +33,14 @@ struct DragGestureBootcamp: View {
         
     // Ex: 2 - A card that can be swiped ---------------------------------------
         ZStack {
+            VStack {
+                Text("\(offset.width)")
+                Spacer()
+            }
             RoundedRectangle(cornerRadius: 20)
                 .frame(width: 300, height: 500)
                 .offset(offset)
+                .scaleEffect(1.0)
                 .gesture(
                     DragGesture()
                         .onChanged { value in
@@ -52,7 +57,6 @@ struct DragGestureBootcamp: View {
         }
 
     }
-
 }
 
 #Preview {
