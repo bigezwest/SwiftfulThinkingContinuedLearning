@@ -9,7 +9,11 @@ import SwiftUI
 
 struct GeometryReaderBootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack (spacing: 0) {
+            Rectangle().fill(Color.red)
+            Rectangle().fill(Color.blue)
+        }
+        .ignoresSafeArea()
     }
 }
 
