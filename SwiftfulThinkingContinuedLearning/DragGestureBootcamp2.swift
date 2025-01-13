@@ -32,10 +32,10 @@ struct DragGestureBootcamp2: View {
                             withAnimation(.spring()) {
                                 if currentDragOffsetY < -150 {
                                     endingOffsetY = -startingOffsetY
-                                    currentDragOffsetY = 0
-                                } else {
-                                    currentDragOffsetY = 0
+                                } else if endingOffsetY != 0 && currentDragOffsetY > 150 {
+                                    endingOffsetY = 0
                                 }
+                                currentDragOffsetY = 0
                             }
                         }
                 )
