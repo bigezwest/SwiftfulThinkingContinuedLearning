@@ -24,6 +24,7 @@ struct ScrollViewReaderBootcamp: View {
                         .cornerRadius(10)
                         .shadow(radius: 10)
                         .padding()
+                        .id(index)
                 }
             }
         }
