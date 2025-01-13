@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct DragGestureBootcamp2: View {
+    
+    @State var startingOffsetY: CGFloat = UIScreen.main.bounds.height * 0.85
+    
     var body: some View {
         ZStack {
             Color.green.ignoresSafeArea()
             
             MySignupView()
+                .offset(y: startingOffsetY)
         }
         .ignoresSafeArea(edges: .bottom)
     }
