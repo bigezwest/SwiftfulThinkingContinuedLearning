@@ -12,7 +12,9 @@ struct RandomModel: Identifiable {
     let title: String
 }
 
-// 1 - Use a binding
+// There are 3 methods.  Each will be in its own MultipleSheetsBootcamp View.
+
+// 1 - Use a binding - Shown here ----------------------------------------------
 // 2 - Use multiple .shieets
 // 3 - Use $item
 
