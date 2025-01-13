@@ -9,7 +9,15 @@ import SwiftUI
 
 struct MaskBootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            HStack {
+                ForEach(1..<6) { index in
+                    Image(systemName: "star.fill")
+                        .font(.largeTitle)
+                        .foregroundColor(.gray)
+                }
+            }
+        }
     }
 }
 
