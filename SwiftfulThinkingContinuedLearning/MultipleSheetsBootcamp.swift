@@ -18,17 +18,27 @@ struct RandomModel: Identifiable {
 
 
 struct MultipleSheetsBootcamp: View {
+    
+    @State var selectedModel: RandomModel = RandomModel(title: "Starting Title")
+    @State var showSheet: Bool = false
+    
     var body: some View {
         VStack (spacing: 20) {
             Button("Button 1") {
-                
+                selectedModel = RandomModel(title: "One")
+                showSheet.toggle()
             }
             Button("Button 2") {
-                
+                selectedModel = RandomModel(title: "Two")
+                showSheet.toggle()
             }
         }
+        .sheet(isPresented: $showSheet, content: {
+            NextScreen(selectedModel: $selectedModel)
+        })
     }
 }
+
 struct NextScreen: View {
     @Binding var selectedModel: RandomModel
     var body: some View {
