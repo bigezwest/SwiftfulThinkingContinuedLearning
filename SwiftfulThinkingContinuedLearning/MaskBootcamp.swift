@@ -26,6 +26,7 @@ struct MaskBootcamp: View {
                     .frame(width: CGFloat(rating) / 5 * geometry.size.width)
             }
         }
+        .allowsHitTesting(false)
     }
 
     private var starsView: some View {
