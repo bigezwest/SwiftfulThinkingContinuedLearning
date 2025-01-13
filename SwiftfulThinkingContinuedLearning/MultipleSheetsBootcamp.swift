@@ -7,9 +7,26 @@
 
 import SwiftUI
 
+struct RandomModel: Identifiable {
+    let id = UUID().uuidString
+    let title: String
+}
+
+// 1 - Use a binding
+// 2 - Use multiple .shieets
+// 3 - Use $item
+
+
 struct MultipleSheetsBootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack (spacing: 20) {
+            Button("Button 1") {
+                
+            }
+            Button("Button 2") {
+                
+            }
+        }
     }
 }
 
