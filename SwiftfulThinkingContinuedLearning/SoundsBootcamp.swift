@@ -9,7 +9,16 @@ import SwiftUI
 
 struct SoundsBootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack (spacing: 40) {
+            
+            Button("Play Sound 1") {
+                
+            }
+            
+            Button("Play Sound 2") {
+                
+            }
+        }
     }
 }
 
