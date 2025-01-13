@@ -13,9 +13,15 @@ class SoundManager {
     static let instance = SoundManager()
     // Var to hold AVPlayer
     var player: AVAudioPlayer?
-    func playSound() {
+    enum SoundOption: String {
+        case Tada
+        case Badum
+    }
+    func playSound(sound: SoundOption) {
         
-        guard let url = URL(string: "") else { return }
+        guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ".mp3") else {
+            return
+        }
         do {
             player = try AVAudioPlayer(contentsOf: url)
             player?.play()
@@ -31,11 +37,11 @@ struct SoundsBootcamp: View {
         VStack (spacing: 40) {
             
             Button("Play Sound 1") {
-                
+                SoundManager.instance.playSound(sound: .Tada)
             }
             
             Button("Play Sound 2") {
-                
+                SoundManager.instance.playSound(sound: .Badum)
             }
         }
     }
