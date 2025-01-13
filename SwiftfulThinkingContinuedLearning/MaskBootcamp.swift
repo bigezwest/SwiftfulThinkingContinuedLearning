@@ -35,7 +35,11 @@ struct MaskBootcamp: View {
                 Image(systemName: "star.fill")
                     .font(.largeTitle)
                     .foregroundColor(Color.gray)
-                    .onTapGesture { rating = index }
+                    .onTapGesture {
+                        withAnimation(.easeInOut) {
+                            rating = index
+                        }
+                }
             }
         }
     }
