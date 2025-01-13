@@ -9,7 +9,8 @@ import SwiftUI
 
 struct GeometryReaderBootcamp: View {
     var body: some View {
-        
+            
+        // Ex: 1 - Use geometry reader to measure left rectangle ---------------
         GeometryReader { geometry in
             HStack (spacing: 0) {
                 Rectangle()
