@@ -7,7 +7,15 @@
 
 import SwiftUI
 
+class SoundManager {
+    // Make the soundManager available to use in any view in the app.
+    static let instance = SoundManager()
+    
+    
+}
+
 struct SoundsBootcamp: View {
+
     var body: some View {
         VStack (spacing: 40) {
             
