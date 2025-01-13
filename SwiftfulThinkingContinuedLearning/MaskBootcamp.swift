@@ -13,13 +13,16 @@ struct MaskBootcamp: View {
     
     var body: some View {
         ZStack {
-            HStack {
-                ForEach(1..<6) { index in
-                    Image(systemName: "star.fill")
-                        .font(.largeTitle)
-                        .foregroundColor(rating >= index ? Color.yellow : Color.gray)
-                        .onTapGesture { rating = index }
-                }
+            starsView
+        }
+    }
+    private var starsView: some View {
+        HStack {
+            ForEach(1..<6) { index in
+                Image(systemName: "star.fill")
+                    .font(.largeTitle)
+                    .foregroundColor(rating >= index ? Color.yellow : Color.gray)
+                    .onTapGesture { rating = index }
             }
         }
     }
