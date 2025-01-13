@@ -40,7 +40,7 @@ struct DragGestureBootcamp: View {
             RoundedRectangle(cornerRadius: 20)
                 .frame(width: 300, height: 500)
                 .offset(offset)
-                .scaleEffect(1.0)
+                .scaleEffect(getScaleAmount())
                 .gesture(
                     DragGesture()
                         .onChanged { value in
@@ -57,6 +57,13 @@ struct DragGestureBootcamp: View {
         }
 
     }
+    func getScaleAmount() -> CGFloat {
+        let max = UIScreen.main.bounds.width / 2
+        let currentAmount = abs(offset.width)
+        let percentage = currentAmount / max
+        return 1.0 - percentage
+    }
+
 }
 
 #Preview {
