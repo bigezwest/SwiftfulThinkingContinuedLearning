@@ -25,9 +25,14 @@ struct GeometryReaderBootcamp: View {
         ScrollView(.horizontal, showsIndicators: false, content: {
             HStack {
                 ForEach(0..<20) { index in
-                    RoundedRectangle(cornerRadius: 20)
-                        .frame(width: 300, height: 250)
-                        .padding()
+                    GeometryReader { geometry in
+                        RoundedRectangle(cornerRadius: 20)
+                            .rotation3DEffect(
+                                Angle(degrees: 10),
+                                axis: (x: 0.0, y: 1.0, z: 0.0))
+                    }
+                    .frame(width: 300, height: 250)
+                    .padding()
                 }
             }
         })
