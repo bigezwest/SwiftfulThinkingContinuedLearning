@@ -12,6 +12,8 @@ struct DragGestureBootcamp: View {
     @State var offset: CGSize = .zero
 
     var body: some View {
+        
+        // Ex: 1 - A square that has DragGesture attached to it ----------------
         RoundedRectangle(cornerRadius: 20)
             .frame(width: 100, height: 100)
             .offset(offset)
