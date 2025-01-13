@@ -11,15 +11,26 @@ struct GeometryReaderBootcamp: View {
     var body: some View {
             
         // Ex: 1 - Use geometry reader to measure left rectangle ---------------
-        GeometryReader { geometry in
-            HStack (spacing: 0) {
-                Rectangle()
-                    .fill(Color.red)
-                    .frame(width: geometry.size.width * 0.6666)
-                Rectangle().fill(Color.blue)
+//        GeometryReader { geometry in
+//            HStack (spacing: 0) {
+//                Rectangle()
+//                    .fill(Color.red)
+//                    .frame(width: geometry.size.width * 0.6666)
+//                Rectangle().fill(Color.blue)
+//            }
+//            .ignoresSafeArea()
+//        }
+        
+        // Ex: 2 - Horizontal Scroll -------------------------------------------
+        ScrollView(.horizontal, showsIndicators: false, content: {
+            HStack {
+                ForEach(0..<20) { index in
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(width: 300, height: 250)
+                        .padding()
+                }
             }
-            .ignoresSafeArea()
-        }
+        })
     }
 }
 
