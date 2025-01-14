@@ -15,6 +15,9 @@ struct UserModel: Identifiable {
 }
 
 class ArrayModificationVewModel: ObservableObject {
+    
+    @Published var dataArray: [UserModel] = []
+     
     init() {
         getUsers()
     }
@@ -30,6 +33,9 @@ class ArrayModificationVewModel: ObservableObject {
         let user8 = UserModel(name: "Wilma", points: 800, isVerified: false)
         let user9 = UserModel(name: "Betty", points: 900, isVerified: true)
         let user10 = UserModel(name: "Dr. DoLittle", points: 1000, isVerified: false)
+        self.dataArray.append(contentsOf: [
+            user1, user2, user3, user4, user5, user6, user7, user8, user9, user10
+        ])
     }
 }
 
