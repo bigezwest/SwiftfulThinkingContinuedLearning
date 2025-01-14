@@ -44,7 +44,27 @@ struct SortFilterMapBootcamp: View {
     @StateObject var vm = ArrayModificationVewModel()
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack (spacing: 10) {
+                ForEach(vm.dataArray) { user in
+                    VStack (alignment: .leading) {
+                        Text(user.name)
+                            .font(.headline)
+                        HStack {
+                            Text("Points: \(user.points)")
+                            Spacer()
+                            if user.isVerified {
+                                Image(systemName: "flame.fill")
+                            }
+                        }
+                    }
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue.cornerRadius(10))
+                    .padding(.horizontal)
+                }
+            }
+        }
     }
 }
 
