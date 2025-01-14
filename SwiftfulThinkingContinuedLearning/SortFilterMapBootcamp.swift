@@ -64,10 +64,19 @@ class ArrayModificationVewModel: ObservableObject {
 //        mappedArray = dataArray.map({ $0.name })
         
         // Compact Map ---------------------------------------------------------
-        mappedArray = dataArray.compactMap( { (user) -> String? in
-            return user.name
-        } )
-        mappedArray = dataArray.compactMap( {$0.name } )
+//        mappedArray = dataArray.compactMap( { (user) -> String? in
+//            return user.name
+//        } )
+//        mappedArray = dataArray.compactMap( {$0.name } )
+        
+        // Combine sort, filter and map
+//        let sort = dataArray.sorted(by: { $0.points < $1.points } )
+//        let filter = dataArray.filter( { $0.isVerified } )
+//        let map = dataArray.compactMap( { $0.name } )
+        mappedArray = dataArray
+            .sorted(by: { $0.points < $1.points } )
+            .filter( { $0.isVerified } )
+            .compactMap( { $0.name } )
     }
 }
 
