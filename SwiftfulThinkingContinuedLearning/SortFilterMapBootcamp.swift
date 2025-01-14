@@ -17,6 +17,7 @@ struct UserModel: Identifiable {
 class ArrayModificationVewModel: ObservableObject {
     
     @Published var dataArray: [UserModel] = []
+    @Published var filteredArray: [UserModel] = []
      
     init() {
         getUsers()
