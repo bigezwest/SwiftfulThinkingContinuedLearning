@@ -13,8 +13,12 @@ struct MyCustomModel {
 
 struct HashableBootcamp: View {
     
-    let data: [String] = [
-        "One", "Two", "Three", "Four", "Five"
+    let data: [MyCustomModel] = [
+        MyCustomModel(title: "One"),
+        MyCustomModel(title: "Two"),
+        MyCustomModel(title: "Three"),
+        MyCustomModel(title: "Four"),
+        MyCustomModel(title: "Five")
     ]
     
     var body: some View {
