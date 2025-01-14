@@ -6,9 +6,23 @@
 //
 
 import SwiftUI
-
+import UserNotifications
 class NotificationManager {
     static let instance = NotificationManager() // Singleton
+    
+    func requestAuthorization () {
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter
+            .current()
+            .requestAuthorization(
+                options: options) { (success, error) in
+                    if let error = error {
+                        print("ERROR: \(error)")
+                    } else {
+                        print("SUCCESS")
+                    }
+                }
+    }
 }
 
 struct LocalNotificationsBootcamp: View {
