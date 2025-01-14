@@ -23,7 +23,9 @@ class HapticManager {
 
 struct HapticsBootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack (spacing: 20) {
+            Button("success") { HapticManager.instance.notification(type: .success) }
+        }
     }
 }
 
