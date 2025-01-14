@@ -58,6 +58,10 @@ class ArrayModificationVewModel: ObservableObject {
 //        filteredArray = dataArray.filter({ $0.isVerified })
             
         // Mapped Array --------------------------------------------------------
+//        mappedArray = dataArray.map({ (user) -> String in
+//            return user.name
+//        })
+        mappedArray = dataArray.map({ $0.name })
     }
 }
 
