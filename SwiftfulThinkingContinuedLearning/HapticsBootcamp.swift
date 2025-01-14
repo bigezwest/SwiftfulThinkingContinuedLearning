@@ -26,6 +26,7 @@ struct HapticsBootcamp: View {
         VStack (spacing: 20) {
             Button("success") { HapticManager.instance.notification(type: .success) }
             Button("warning") { HapticManager.instance.notification(type: .warning) }
+            Button("error") { HapticManager.instance.notification(type: .error) }
         }
     }
 }
