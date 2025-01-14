@@ -68,23 +68,28 @@ struct SortFilterMapBootcamp: View {
     var body: some View {
         ScrollView {
             VStack (spacing: 10) {
-                ForEach(vm.filteredArray) { user in
-                    VStack (alignment: .leading) {
-                        Text(user.name)
-                            .font(.headline)
-                        HStack {
-                            Text("Points: \(user.points)")
-                            Spacer()
-                            if user.isVerified {
-                                Image(systemName: "flame.fill")
-                            }
-                        }
-                    }
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue.cornerRadius(10))
-                    .padding(.horizontal)
+                ForEach(vm.mappedArray, id: \.self) { name in
+                    Text(name)
+                        .font(.title)
                 }
+                
+//                ForEach(vm.filteredArray) { user in
+//                    VStack (alignment: .leading) {
+//                        Text(user.name)
+//                            .font(.headline)
+//                        HStack {
+//                            Text("Points: \(user.points)")
+//                            Spacer()
+//                            if user.isVerified {
+//                                Image(systemName: "flame.fill")
+//                            }
+//                        }
+//                    }
+//                    .foregroundColor(.white)
+//                    .padding()
+//                    .background(Color.blue.cornerRadius(10))
+//                    .padding(.horizontal)
+//                }
             }
         }
     }
