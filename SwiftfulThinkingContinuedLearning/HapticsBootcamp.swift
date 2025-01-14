@@ -30,7 +30,8 @@ struct HapticsBootcamp: View {
             Divider()
             Button("soft") { HapticManager.instance.impact(style: .soft) }
             Button("light") { HapticManager.instance.impact(style: .light) }
-            Button("light") { HapticManager.instance.impact(style: .medium) }
+            Button("medium") { HapticManager.instance.impact(style: .medium) }
+            Button("rigid") { HapticManager.instance.impact(style: .rigid) }
         }
     }
 }
