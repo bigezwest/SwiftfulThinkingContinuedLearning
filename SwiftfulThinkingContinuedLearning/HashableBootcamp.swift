@@ -29,7 +29,7 @@ struct HashableBootcamp: View {
         ScrollView {
             VStack (spacing: 40) {
                 ForEach(data, id: \.self) { item in
-                    Text(item)
+                    Text(item.title)
                         .font(.headline)
                 }
             }
