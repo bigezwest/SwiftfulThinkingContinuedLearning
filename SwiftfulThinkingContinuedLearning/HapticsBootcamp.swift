@@ -29,6 +29,7 @@ struct HapticsBootcamp: View {
             Button("error") { HapticManager.instance.notification(type: .error) }
             Divider()
             Button("soft") { HapticManager.instance.impact(style: .soft) }
+            Button("light") { HapticManager.instance.impact(style: .light) }
         }
     }
 }
