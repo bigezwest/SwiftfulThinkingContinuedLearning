@@ -13,6 +13,10 @@ class HapticManager {
     func notification() {
         
     }
+    
+    func impact() {
+        
+    }
 }
 
 struct HapticsBootcamp: View {
