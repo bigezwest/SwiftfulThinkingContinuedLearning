@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+class HapticManager {
+    static let instance = HapticManager() // Singleton
+}
+
 struct HapticsBootcamp: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
