@@ -9,7 +9,11 @@ import SwiftUI
 
 struct LocalNotificationsBootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack (spacing: 40) {
+            Button("Request Permission") {
+                
+            }
+        }
     }
 }
 
