@@ -9,6 +9,10 @@ import SwiftUI
 
 class HapticManager {
     static let instance = HapticManager() // Singleton
+    
+    func notification() {
+        
+    }
 }
 
 struct HapticsBootcamp: View {
