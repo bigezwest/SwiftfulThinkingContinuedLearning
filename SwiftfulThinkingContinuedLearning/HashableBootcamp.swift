@@ -7,8 +7,12 @@
 
 import SwiftUI
 
-struct MyCustomModel {
+struct MyCustomModel: Hashable {
     let title: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+    }
 }
 
 struct HashableBootcamp: View {
