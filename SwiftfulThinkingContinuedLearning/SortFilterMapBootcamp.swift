@@ -55,7 +55,7 @@ struct SortFilterMapBootcamp: View {
     var body: some View {
         ScrollView {
             VStack (spacing: 10) {
-                ForEach(vm.dataArray) { user in
+                ForEach(vm.filteredArray) { user in
                     VStack (alignment: .leading) {
                         Text(user.name)
                             .font(.headline)
