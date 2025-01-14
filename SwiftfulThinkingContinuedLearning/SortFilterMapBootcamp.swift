@@ -45,10 +45,16 @@ class ArrayModificationVewModel: ObservableObject {
 //        filteredArray = dataArray.sorted { (user1, user2) -> Bool in
 //            return user1.points > user2.points
 //        }
-        filteredArray = dataArray.sorted(by: { $0.points < $1.points } )
+//        filteredArray = dataArray.sorted(by: { $0.points < $1.points } )
         
         // Filtered Array ------------------------------------------------------
-        
+//        filteredArray = dataArray.filter( { (user) -> Bool in
+//            return user.points > 500      // Greater than 500
+//            return !user.isVerified        Non verified user
+//            return user.name.contains("i")// USer with an "i" in their name
+//        })
+        // Or
+        filteredArray = dataArray.filter({ $0.isVerified })
         
     }
 }
