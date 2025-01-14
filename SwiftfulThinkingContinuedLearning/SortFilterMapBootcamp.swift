@@ -38,6 +38,13 @@ class ArrayModificationVewModel: ObservableObject {
             user1, user2, user3, user4, user5, user6, user7, user8, user9, user10
         ])
     }
+    
+    func updateFilteredArray() {
+        // Sorted array
+        filteredArray = dataArray.sorted { (user1, user2) -> Bool in
+            return user1.points > user2.points
+        }
+    }
 }
 
 struct SortFilterMapBootcamp: View {
