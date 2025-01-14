@@ -23,6 +23,25 @@ class NotificationManager {
                     }
                 }
     }
+    func ScheduleNotification () {
+        let content = UNMutableNotificationContent()
+        content.title = "This is my first notification!"
+        content.subtitle = "This was so easy."
+        content.sound = .default
+        content.badge = 1
+        
+        // time trigger
+        let trigger = UNTimeIntervalNotificationTrigger(
+            timeInterval: 5.0,
+            repeats: false
+        )
+        
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+    }
 }
 
 struct LocalNotificationsBootcamp: View {
