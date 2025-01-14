@@ -32,6 +32,7 @@ struct HapticsBootcamp: View {
             Button("light") { HapticManager.instance.impact(style: .light) }
             Button("medium") { HapticManager.instance.impact(style: .medium) }
             Button("rigid") { HapticManager.instance.impact(style: .rigid) }
+            Button("heavy") { HapticManager.instance.impact(style: .heavy) }
         }
     }
 }
