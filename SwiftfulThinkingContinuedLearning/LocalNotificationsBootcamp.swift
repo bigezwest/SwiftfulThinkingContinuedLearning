@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+class NotificationManager {
+    static let instance = NotificationManager() // Singleton
+}
+
 struct LocalNotificationsBootcamp: View {
     var body: some View {
         VStack (spacing: 40) {
