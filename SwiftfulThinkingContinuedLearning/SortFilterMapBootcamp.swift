@@ -15,7 +15,13 @@ struct UserModel: Identifiable {
 }
 
 class ArrayModificationVewModel: ObservableObject {
+    init() {
+        getUsers()
+    }
     
+    func getUsers() {
+        
+    }
 }
 
 struct SortFilterMapBootcamp: View {
