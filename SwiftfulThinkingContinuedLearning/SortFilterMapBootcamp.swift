@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserModel: Identifiable {
     let id = UUID().uuidString
-    let name: String
+    let name: String?
     let points: Int
     let isVerified: Bool
 }
@@ -26,7 +26,7 @@ class ArrayModificationVewModel: ObservableObject {
     }
     
     func getUsers() {
-        let user1 = UserModel(name: "Thomas", points: 100, isVerified: true)
+        let user1 = UserModel(name: nil, points: 100, isVerified: true)
         let user2 = UserModel(name: "Dick", points: 200, isVerified: false)
         let user3 = UserModel(name: "Harry", points: 300, isVerified: true)
         let user4 = UserModel(name: "Joe", points: 400, isVerified: false)
@@ -61,7 +61,13 @@ class ArrayModificationVewModel: ObservableObject {
 //        mappedArray = dataArray.map({ (user) -> String in
 //            return user.name
 //        })
-        mappedArray = dataArray.map({ $0.name })
+//        mappedArray = dataArray.map({ $0.name })
+        
+        // Compact Map ---------------------------------------------------------
+        mappedArray = dataArray.compactMap( { (user) -> String? in
+            return user.name
+        } )
+        mappedArray = dataArray.compactMap( {$0.name } )
     }
 }
 
