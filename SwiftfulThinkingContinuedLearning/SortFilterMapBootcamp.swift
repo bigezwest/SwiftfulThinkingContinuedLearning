@@ -18,7 +18,8 @@ class ArrayModificationVewModel: ObservableObject {
     
     @Published var dataArray: [UserModel] = []
     @Published var filteredArray: [UserModel] = []
-     
+    @Published var mappedArray: [String] = []
+    
     init() {
         getUsers()
         updateFilteredArray()
@@ -54,8 +55,9 @@ class ArrayModificationVewModel: ObservableObject {
 //            return user.name.contains("i")// USer with an "i" in their name
 //        })
         // Or
-        filteredArray = dataArray.filter({ $0.isVerified })
-        
+//        filteredArray = dataArray.filter({ $0.isVerified })
+            
+        // Mapped Array --------------------------------------------------------
     }
 }
 
