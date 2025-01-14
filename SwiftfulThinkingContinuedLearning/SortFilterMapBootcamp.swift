@@ -41,10 +41,15 @@ class ArrayModificationVewModel: ObservableObject {
     }
     
     func updateFilteredArray() {
-        // Sorted array
-        filteredArray = dataArray.sorted { (user1, user2) -> Bool in
-            return user1.points > user2.points
-        }
+        // Sorted array --------------------------------------------------------
+//        filteredArray = dataArray.sorted { (user1, user2) -> Bool in
+//            return user1.points > user2.points
+//        }
+        filteredArray = dataArray.sorted(by: { $0.points < $1.points } )
+        
+        // Filtered Array ------------------------------------------------------
+        
+        
     }
 }
 
