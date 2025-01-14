@@ -21,6 +21,7 @@ class ArrayModificationVewModel: ObservableObject {
      
     init() {
         getUsers()
+        updateFilteredArray()
     }
     
     func getUsers() {
