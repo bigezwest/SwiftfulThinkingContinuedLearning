@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+struct MyCustomModel {
+    let title: String
+}
+
 struct HashableBootcamp: View {
     
     let data: [String] = [
