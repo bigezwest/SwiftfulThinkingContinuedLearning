@@ -29,7 +29,7 @@ struct LocalNotificationsBootcamp: View {
     var body: some View {
         VStack (spacing: 40) {
             Button("Request Permission") {
-                
+                NotificationManager.instance.requestAuthorization()
             }
         }
     }
