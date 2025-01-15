@@ -85,6 +85,14 @@ struct CoreDataRelationshipsBootcamp: View {
                                 .frame(maxWidth: .infinity)
                                 .background(Color.blue.cornerRadius(10))
                         })
+                    ScrollView(.horizontal, showsIndicators: true, content: {
+                        HStack(alignment: .top) {
+                            ForEach(vm.businesses) { business in
+                                BusinessView(entity: business)
+                            }
+                        }
+                        
+                    })
                 }
                 .padding()
             }
