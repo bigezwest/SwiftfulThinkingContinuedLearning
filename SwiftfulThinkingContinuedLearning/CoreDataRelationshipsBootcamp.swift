@@ -44,6 +44,10 @@ class CoreDataRelationshipViewModel: ObservableObject {
     func addBusiness() {
         let newBusiness = BusinessEntity(context: manager.context)
         newBusiness.name = "Apple"
+        save()
+    }
+    func save() {
+        manager.save()
     }
 }
 struct CoreDataRelationshipsBootcamp: View {
