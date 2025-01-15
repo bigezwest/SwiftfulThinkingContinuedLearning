@@ -12,10 +12,16 @@ class BackgroundThreadViewModel: ObservableObject {
     
     func fetchData() {
         
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .background).async {
             let newData = self.downloadData()
+            
+            print("CHECK 1: \(Thread.isMainThread)")
+            print("CHECK 1: \(Thread.current)")
+            
             DispatchQueue.main.async {
                 self.dataArray = newData
+                print("CHECK 2: \(Thread.isMainThread)")
+                print("CHECK 2: \(Thread.current)")
             }
         }
      }
@@ -35,7 +41,7 @@ struct BackgroundThreadBootcamp: View {
     
     var body: some View {
         ScrollView {
-            VStack (spacing: 10) {
+            LazyVStack (spacing: 10) {
                 Text("Load Data")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
