@@ -21,7 +21,7 @@ class CoreDataManager {
     let context: NSManagedObjectContext
     
     init() {
-        container = NSPersistentContainer(name: "")
+        container = NSPersistentContainer(name: "CoreDataContainer")
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Error loading core data \(error)")
@@ -41,6 +41,16 @@ class CoreDataRelationshipViewModel: ObservableObject {
     let manager = CoreDataManager.instance
     @Published var businesses: [BusinessEntity] = []
     
+    func getBusinesses() {
+        let request = NSFetchRequest<BusinessEntity>(
+            entityName: "BusinessEntity"
+        )
+        do {
+            businesses = try manager.context.fetch(request)
+        } catch let error {
+            print("Error Fetching: \(error.localizedDescription)")
+        }
+    }
     func addBusiness() {
         let newBusiness = BusinessEntity(context: manager.context)
         newBusiness.name = "Apple"
