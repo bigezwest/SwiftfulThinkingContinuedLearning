@@ -141,12 +141,12 @@ class CoreDataRelationshipViewModel: ObservableObject {
     func save() {
         businesses.removeAll()
         departments.removeAll()
-//        employees.removeAll()
+        employees.removeAll()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.manager.save()
             self.getBusinesses()
             self.getDepartments()
-//            self.getEmployees()
+            self.getEmployees()
         }
         print("Saved Successfully")
     }
@@ -166,7 +166,7 @@ struct CoreDataRelationshipsBootcamp: View {
 //                            vm.addDepartment()
 //                            vm.addEmployee()
 //                            vm.updateBusiness()
-                            vm.getEmployees(forBusiness: vm.businesses[0])
+//                            vm.getEmployees(forBusiness: vm.businesses[0])
                         }, label: {
                             Text("Perform Action")
                                 .foregroundColor(.white)
