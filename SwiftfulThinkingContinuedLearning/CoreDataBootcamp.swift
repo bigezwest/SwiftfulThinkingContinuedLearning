@@ -19,10 +19,12 @@ class CoreDataViewModel: ObservableObject {
     let container: NSPersistentContainer
     
     init() {
-        container = NSPersistentContainer(name: "")
+        container = NSPersistentContainer(name: "FruitsContainer")
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Error Loading CoreData: \(error)")
+            } else {
+                print("Successfully loaded core data!")
             }
         }
     }
