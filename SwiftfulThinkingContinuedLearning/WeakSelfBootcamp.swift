@@ -8,23 +8,27 @@
 import SwiftUI
 
 struct WeakSelfBootcamp: View {
-    @StateObject var vm = WeakSelfSecondScreenViewModel()
+ 
     var body: some View {
         NavigationView {
             NavigationLink("Navigate", destination:
                 WeakSelfSecondScreen())
                 .navigationTitle("Screen 1")
-            if let data = vm.data {
-                Text(data)
-            }
+    
         }
     }
 }
 struct WeakSelfSecondScreen: View {
+
+    @StateObject var vm = WeakSelfSecondScreenViewModel()
+
     var body: some View {
         Text("Second View")
             .font(.largeTitle)
             .foregroundColor(.red)
+        if let data = vm.data {
+            Text(data)
+        }
     }
 }
 
@@ -35,7 +39,7 @@ class WeakSelfSecondScreenViewModel: ObservableObject {
         print("INITIALIZE NOW")
         getData()
     }
-    deinit{
+    deinit {
         print("DEINITIALIZE NOW")
     }
     func getData() {
