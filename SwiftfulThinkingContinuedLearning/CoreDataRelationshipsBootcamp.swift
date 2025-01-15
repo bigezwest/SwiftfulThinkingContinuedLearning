@@ -48,14 +48,32 @@ class CoreDataRelationshipViewModel: ObservableObject {
     }
     func save() {
         manager.save()
+        print("Saved Successfully")
     }
 }
+
 struct CoreDataRelationshipsBootcamp: View {
     
-    @StateObject var vm = CoreDataViewModel()
+    @StateObject var vm = CoreDataRelationshipViewModel()
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView {
+                VStack (spacing: 20) {
+                    Button(action: {
+                        vm.addBusiness()
+                    }, label: {
+                        Text("Perform Action")
+                            .foregroundColor(.white)
+                            .frame(height: 55)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue.cornerRadius(10))
+                    })
+                }
+                .padding()
+            }
+            .navigationTitle("Relationships")
+        }
     }
 }
 
