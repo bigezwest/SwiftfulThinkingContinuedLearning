@@ -62,6 +62,7 @@ class CoreDataRelationshipViewModel: ObservableObject {
     }
     func save() {
         manager.save()
+        getBusinesses()
         print("Saved Successfully")
     }
 }
