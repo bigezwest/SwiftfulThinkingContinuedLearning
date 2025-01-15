@@ -10,6 +10,18 @@ import SwiftUI
 class BackgroundThreadViewModel: ObservableObject {
     @Published var dataArray: [String] = []
     
+    func fetchData() {
+        let newData = downloadData()
+        dataArray = newData
+    }
+    private func downloadData() -> [String] {
+        var data: [String] = []
+        for x in 0..<100 {
+            data.append("\(x)")
+            print(data)
+        }
+        return data
+    }
 }
 
 struct BackgroundThreadBootcamp: View {
