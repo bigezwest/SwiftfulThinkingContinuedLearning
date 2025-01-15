@@ -41,6 +41,7 @@ class CoreDataViewModel: ObservableObject {
     func addFruit(text: String) {
         let newFruit = FruitEntity(context: container.viewContext)
         newFruit.name = text
+        saveData()
     }
     func saveData() {
         do {
