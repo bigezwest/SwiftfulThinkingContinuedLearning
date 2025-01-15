@@ -24,6 +24,22 @@ struct WeakSelfSecondScreen: View {
     }
 }
 
+class WeakSelfSecondScreenViewModel: ObservableObject {
+    @Published var data: String? = nil
+    
+    init() {
+        print("INITIALIZE NOW")
+        getData()
+    }
+    deinit{
+        print("DEINITIALIZE NOW")
+    }
+    func getData() {
+        data = "NEW DATA!!!"
+    }
+    
+}
+
 #Preview {
     WeakSelfBootcamp()
 }
