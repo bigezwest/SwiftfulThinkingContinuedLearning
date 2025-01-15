@@ -7,7 +7,15 @@
 
 import SwiftUI
 
+/* MVVM Architecture
+     View - UI
+     Model - Datapoint
+     ViewModel - Manages Data for a view
+ */
 
+class CoreDataViewModel: ObservableObject {
+    
+}
 
 struct CoreDataBootcamp: View {
     var body: some View {
