@@ -99,8 +99,9 @@ class CoreDataRelationshipViewModel: ObservableObject {
     }
     func addDepartment() {
         let newDepartment = DepartmentEntity(context: manager.context)
-        newDepartment.name = "Marketing"
-        newDepartment.businesses = [businesses[0]]
+        newDepartment.name = "Engineering"
+//        newDepartment.businesses = [businesses[0]]
+        newDepartment.addToEmployees(employees[1])
         save()
     }
     func addEmployee() {
@@ -138,8 +139,8 @@ struct CoreDataRelationshipsBootcamp: View {
                     Button(
                         action: {
 //                            vm.addBusiness()
-//                            vm.addDepartment()
-                            vm.addEmployee()
+                            vm.addDepartment()
+//                            vm.addEmployee()
                         }, label: {
                             Text("Perform Action")
                                 .foregroundColor(.white)
