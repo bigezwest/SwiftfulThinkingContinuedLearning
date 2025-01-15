@@ -103,6 +103,16 @@ class CoreDataRelationshipViewModel: ObservableObject {
         newDepartment.businesses = [businesses[0]]
         save()
     }
+    func addEmployee() {
+        let newEmployee = EmployeeEntity(context: manager.context)
+        newEmployee.age = 30
+        newEmployee.dateJoined = Date()
+        newEmployee.name = "Dick"
+        
+//        newEmployee.business = businesses[0]
+//        newEmployee.department = departments[0]
+        save()
+    }
     func save() {
         businesses.removeAll()
         departments.removeAll()
@@ -114,16 +124,6 @@ class CoreDataRelationshipViewModel: ObservableObject {
             self.getEmployees()
         }
         print("Saved Successfully")
-    }
-    func addEmployee() {
-        let newEmployee = EmployeeEntity(context: manager.context)
-        newEmployee.age = 25
-        newEmployee.dateJoined = Date()
-        newEmployee.name = "Tom"
-        
-        newEmployee.business = businesses[0]
-        newEmployee.department = departments[0]
-        save()
     }
 }
 
