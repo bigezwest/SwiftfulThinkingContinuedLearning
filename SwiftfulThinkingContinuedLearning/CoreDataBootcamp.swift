@@ -45,6 +45,7 @@ class CoreDataViewModel: ObservableObject {
     func saveData() {
         do {
             try container.viewContext.save()
+            fetchFruits()
         } catch let error {
             print("Error Saving: \(error)")
         }
