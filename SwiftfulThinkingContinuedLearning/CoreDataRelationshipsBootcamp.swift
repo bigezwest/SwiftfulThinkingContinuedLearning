@@ -73,9 +73,19 @@ class CoreDataRelationshipViewModel: ObservableObject {
         
         save()
     }
+    func addDepartment() {
+        let newDepartment = DepartmentEntity(context: manager.context)
+        newDepartment.name = "Marketing"
+        newDepartment.businesses = [businesses[0]]
+        save()
+    }
     func save() {
-        manager.save()
-        getBusinesses()
+        businesses.removeAll()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.manager.save()
+            self.getBusinesses()
+
+        }
         print("Saved Successfully")
     }
 }
@@ -90,7 +100,8 @@ struct CoreDataRelationshipsBootcamp: View {
                 VStack(spacing: 20) {
                     Button(
                         action: {
-                            vm.addBusiness()
+//                            vm.addBusiness()
+                            vm.addDepartment()
                         },
                         label: {
                             Text("Perform Action")
