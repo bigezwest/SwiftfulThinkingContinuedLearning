@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct WeakSelfBootcamp: View {
+    @StateObject var vm = WeakSelfSecondScreenViewModel()
     var body: some View {
         NavigationView {
             NavigationLink("Navigate", destination:
                 WeakSelfSecondScreen())
                 .navigationTitle("Screen 1")
+            if let data = vm.data {
+                Text(data)
+            }
         }
     }
 }
