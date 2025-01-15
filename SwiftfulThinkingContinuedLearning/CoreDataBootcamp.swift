@@ -69,11 +69,11 @@ struct CoreDataBootcamp: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
                 Button(action: {
-                    guard textFieldText.isEmpty else { return }
+                    guard !textFieldText.isEmpty else { return }
                     vm.addFruit(text: textFieldText)
                     textFieldText = ""
                 }, label: {
-                    Text("Button")
+                    Text("Save")
                         .font(.headline)
                         .foregroundColor(.white)
                         .frame(height: 55)
@@ -89,6 +89,7 @@ struct CoreDataBootcamp: View {
                         Text(entity.name ?? "No Name")
                     }
                 }
+                .navigationTitle(Text("Fruits"))
             }
         }
     }
