@@ -89,8 +89,10 @@ struct CoreDataBootcamp: View {
                         Text(entity.name ?? "No Name")
                     }
                 }
-                .navigationTitle(Text("Fruits"))
+                .listStyle(PlainListStyle())
             }
+            .navigationTitle(Text("Fruits"))
+
         }
     }
 }
