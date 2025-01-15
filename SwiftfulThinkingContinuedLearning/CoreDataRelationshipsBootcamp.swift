@@ -55,8 +55,8 @@ class CoreDataRelationshipViewModel: ObservableObject {
         let sort = NSSortDescriptor(keyPath: \BusinessEntity.name, ascending: true)
         request.sortDescriptors = [sort]
         
-        let filter = NSPredicate(format: "name == %@", "Apple")
-        request.predicate = filter
+//        let filter = NSPredicate(format: "name == %@", "Apple")
+//        request.predicate = filter
         
         do {
             businesses = try manager.context.fetch(request)
@@ -78,6 +78,19 @@ class CoreDataRelationshipViewModel: ObservableObject {
         let request = NSFetchRequest<EmployeeEntity>(
             entityName: "EmployeeEntity"
         )
+        do {
+            employees = try manager.context.fetch(request)
+        } catch let error {
+            print("Error Fetching: \(error.localizedDescription)")
+        }
+    }
+    func getEmployees(forBusiness business: BusinessEntity) {
+        let request = NSFetchRequest<EmployeeEntity>(
+            entityName: "EmployeeEntity"
+        )
+        let filter = NSPredicate(format: "business == %@", business)
+        request.predicate = filter
+        
         do {
             employees = try manager.context.fetch(request)
         } catch let error {
@@ -128,12 +141,12 @@ class CoreDataRelationshipViewModel: ObservableObject {
     func save() {
         businesses.removeAll()
         departments.removeAll()
-        employees.removeAll()
+//        employees.removeAll()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.manager.save()
             self.getBusinesses()
             self.getDepartments()
-            self.getEmployees()
+//            self.getEmployees()
         }
         print("Saved Successfully")
     }
@@ -152,7 +165,8 @@ struct CoreDataRelationshipsBootcamp: View {
 //                            vm.addBusiness()
 //                            vm.addDepartment()
 //                            vm.addEmployee()
-                            vm.updateBusiness()
+//                            vm.updateBusiness()
+                            vm.getEmployees(forBusiness: vm.businesses[0])
                         }, label: {
                             Text("Perform Action")
                                 .foregroundColor(.white)
