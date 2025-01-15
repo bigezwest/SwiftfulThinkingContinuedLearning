@@ -8,6 +8,13 @@
 import SwiftUI
 import CoreData
 
+/*
+ 3 Entities
+     - Business entity
+     - Departemtn entity
+     - Employee entity
+ */
+
 class CoreDataManager {
     static let instance = CoreDataManager()
     let container: NSPersistentContainer
