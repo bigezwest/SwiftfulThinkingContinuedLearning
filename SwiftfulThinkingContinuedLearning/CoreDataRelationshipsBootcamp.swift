@@ -81,13 +81,13 @@ class CoreDataRelationshipViewModel: ObservableObject {
 
     func addBusiness() {
         let newBusiness = BusinessEntity(context: manager.context)
-        newBusiness.name = "Microsoft"
+        newBusiness.name = "Facebook"
 
         // Add existing departments to the new business
-        newBusiness.departments = [departments[0], departments[1]]
+//        newBusiness.departments = [departments[0], departments[1]]
 
         // Add existing employees to the new businesss
-        newBusiness.employees = [employees[1]]
+//        newBusiness.employees = [employees[1]]
 
         // Add new business to an existing department
         //        newBusiness.addToDepartments(<#T##value: DepartmentEntity##DepartmentEntity#>)
@@ -99,9 +99,10 @@ class CoreDataRelationshipViewModel: ObservableObject {
     }
     func addDepartment() {
         let newDepartment = DepartmentEntity(context: manager.context)
-        newDepartment.name = "Engineering"
-//        newDepartment.businesses = [businesses[0]]
+        newDepartment.name = "Finance"
+        newDepartment.businesses = [businesses[0], businesses[1], businesses[2]]
         newDepartment.addToEmployees(employees[1])
+//        newDepartment.addToEmployees(employees[1])
         save()
     }
     func addEmployee() {
@@ -138,8 +139,8 @@ struct CoreDataRelationshipsBootcamp: View {
                 VStack(spacing: 20) {
                     Button(
                         action: {
-                            vm.addBusiness()
-//                            vm.addDepartment()
+//                            vm.addBusiness()
+                            vm.addDepartment()
 //                            vm.addEmployee()
                         }, label: {
                             Text("Perform Action")
