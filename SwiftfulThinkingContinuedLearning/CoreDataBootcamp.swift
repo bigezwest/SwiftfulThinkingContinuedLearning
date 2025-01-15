@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 /* MVVM Architecture
      View - UI
@@ -14,7 +15,17 @@ import SwiftUI
  */
 
 class CoreDataViewModel: ObservableObject {
+
+    let container: NSPersistentContainer
     
+    init() {
+        container = NSPersistentContainer(name: "")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                print("Error Loading CoreData: \(error)")
+            }
+        }
+    }
 }
 
 struct CoreDataBootcamp: View {
