@@ -41,9 +41,11 @@ class CoreDataRelationshipViewModel: ObservableObject {
     let manager = CoreDataManager.instance
     @Published var businesses: [BusinessEntity] = []
     @Published var departments: [DepartmentEntity] = []
+    @Published var employees: [EmployeeEntity] = []
     init() {
         getBusinesses()
         getDepartments()
+        getEmployees()
     }
 
     func getBusinesses() {
@@ -62,6 +64,16 @@ class CoreDataRelationshipViewModel: ObservableObject {
         )
         do {
             departments = try manager.context.fetch(request)
+        } catch let error {
+            print("Error Fetching: \(error.localizedDescription)")
+        }
+    }
+    func getEmployees() {
+        let request = NSFetchRequest<EmployeeEntity>(
+            entityName: "EmployeeEntity"
+        )
+        do {
+            employees = try manager.context.fetch(request)
         } catch let error {
             print("Error Fetching: \(error.localizedDescription)")
         }
@@ -94,12 +106,24 @@ class CoreDataRelationshipViewModel: ObservableObject {
     func save() {
         businesses.removeAll()
         departments.removeAll()
+        employees.removeAll()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.manager.save()
             self.getBusinesses()
             self.getDepartments()
+            self.getEmployees()
         }
         print("Saved Successfully")
+    }
+    func addEmployee() {
+        let newEmployee = EmployeeEntity(context: manager.context)
+        newEmployee.age = 25
+        newEmployee.dateJoined = Date()
+        newEmployee.name = "Tom"
+        
+        newEmployee.business = businesses[0]
+        newEmployee.department = departments[0]
+        save()
     }
 }
 
@@ -113,8 +137,9 @@ struct CoreDataRelationshipsBootcamp: View {
                 VStack(spacing: 20) {
                     Button(
                         action: {
-                            //                            vm.addBusiness()
-                            vm.addDepartment()
+//                            vm.addBusiness()
+//                            vm.addDepartment()
+                            vm.addEmployee()
                         }, label: {
                             Text("Perform Action")
                                 .foregroundColor(.white)
@@ -137,6 +162,13 @@ struct CoreDataRelationshipsBootcamp: View {
                                     }
                                 }
                         })
+                    ScrollView(.horizontal, showsIndicators: true, content: {
+                            HStack(alignment: .top) {
+                                ForEach(vm.employees) { employee in
+                                    EmployeeView(entity: employee)
+                                }
+                            }
+                    })
                 }
                 .padding()
             }
@@ -218,6 +250,28 @@ struct DepartmentView: View {
         .padding()
         .frame(maxWidth: 300, alignment: .leading)
         .background(Color.green.opacity(0.5))
+        .cornerRadius(10)
+        .shadow(radius: 10)
+    }
+}
+struct EmployeeView: View {
+    let entity: EmployeeEntity
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20, content: {
+            Text("Name: \(entity.name ?? "")")
+                .bold()
+            Text("Age: \(entity.age)")
+            Text("Date Joined: \(entity.dateJoined ?? Date())")
+            Text("Business:")
+                .bold()
+            Text(entity.business?.name ?? "")
+            Text("Department: ")
+                .bold()
+            Text(entity.department?.name ?? "")
+        })
+        .padding()
+        .frame(maxWidth: 300, alignment: .leading)
+        .background(Color.blue.opacity(0.5))
         .cornerRadius(10)
         .shadow(radius: 10)
     }
