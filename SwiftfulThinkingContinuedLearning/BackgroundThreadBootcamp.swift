@@ -34,6 +34,9 @@ struct BackgroundThreadBootcamp: View {
                 Text("Load Data")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
+                    .onTapGesture {
+                        vm.fetchData()
+                    }
                 ForEach(vm.dataArray, id: \.self) { item in
                     Text(item)
                         .font(.headline)
