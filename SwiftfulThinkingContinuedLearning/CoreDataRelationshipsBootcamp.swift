@@ -78,7 +78,11 @@ class CoreDataRelationshipViewModel: ObservableObject {
             print("Error Fetching: \(error.localizedDescription)")
         }
     }
-
+    func updateBusiness() {
+        let existingBusiness = businesses[2]
+        existingBusiness.addToDepartments(departments[1])
+        save()
+    }
     func addBusiness() {
         let newBusiness = BusinessEntity(context: manager.context)
         newBusiness.name = "Facebook"
@@ -141,7 +145,8 @@ struct CoreDataRelationshipsBootcamp: View {
                         action: {
 //                            vm.addBusiness()
 //                            vm.addDepartment()
-                            vm.addEmployee()
+//                            vm.addEmployee()
+                            vm.updateBusiness()
                         }, label: {
                             Text("Perform Action")
                                 .foregroundColor(.white)
