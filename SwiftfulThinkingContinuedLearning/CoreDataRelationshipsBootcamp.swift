@@ -41,6 +41,10 @@ class CoreDataRelationshipViewModel: ObservableObject {
     let manager = CoreDataManager.instance
     @Published var businesses: [BusinessEntity] = []
     
+    init() {
+        getBusinesses()
+    }
+    
     func getBusinesses() {
         let request = NSFetchRequest<BusinessEntity>(
             entityName: "BusinessEntity"
