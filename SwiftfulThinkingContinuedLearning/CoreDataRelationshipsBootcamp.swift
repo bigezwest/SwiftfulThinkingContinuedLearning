@@ -138,6 +138,11 @@ class CoreDataRelationshipViewModel: ObservableObject {
         newEmployee.department = departments[1]
         save()
     }
+    func deleteDepartement() {
+        let department = departments[1]
+        manager.context.delete(department)
+        save()
+    }
     func save() {
         businesses.removeAll()
         departments.removeAll()
@@ -167,6 +172,7 @@ struct CoreDataRelationshipsBootcamp: View {
 //                            vm.addEmployee()
 //                            vm.updateBusiness()
 //                            vm.getEmployees(forBusiness: vm.businesses[0])
+                            vm.deleteDepartement()
                         }, label: {
                             Text("Perform Action")
                                 .foregroundColor(.white)
