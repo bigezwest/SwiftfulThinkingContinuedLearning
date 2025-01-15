@@ -13,12 +13,19 @@ struct MovieModel {
     let count: Int
 }
 
+typealias TVModel = MovieModel
+
 struct TypealiasBootcamp: View {
     
-    @State var item: MovieModel = MovieModel(
-        title: "Fantozzi",
+//    @State var item: MovieModel = MovieModel(
+//        title: "Fantozzi",
+//        director: "Paolo Villaggio",
+//        count: 99
+//    )
+    @State var item: TVModel = TVModel(
+        title: "Fantozzi (TV)",
         director: "Paolo Villaggio",
-        count: 99
+        count: 1000
     )
     
     var body: some View {
