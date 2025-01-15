@@ -7,9 +7,28 @@
 
 import SwiftUI
 
+class BackgroundThreadViewModel: ObservableObject {
+    @Published var dataArray: [String] = []
+    
+}
+
 struct BackgroundThreadBootcamp: View {
+    
+    @StateObject var vm = BackgroundThreadViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack (spacing: 10) {
+                Text("Load Data")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                ForEach(vm.dataArray, id: \.self) { item in
+                    Text(item)
+                        .font(.headline)
+                        .foregroundColor(.red)
+                }
+            }
+        }
     }
 }
 
