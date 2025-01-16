@@ -28,7 +28,16 @@ struct CodableBootcamp: View {
     @StateObject var vm = CodableViewModel()
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack (spacing: 20) {
+            if let customer = vm.customer {
+                Text("Customer ID: \(customer.id)")
+                Text("Customer Name: \(customer.name)")
+                Text("Customer Points: \(customer.points)")
+                Text("Is Premium: \(customer.isPremium)")
+            } else {
+                Text("Loading...")
+            }
+        }
     }
 }
 
