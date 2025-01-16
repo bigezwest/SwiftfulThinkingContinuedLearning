@@ -11,13 +11,21 @@ class EscapingViewModel: ObservableObject {
     @Published var text: String = "Hello"
     
     func getData() {
-        let newData = downloadData()
-        text = newData
+        downloadData3 { [weak self] (returnedData) in
+            self?.text = returnedData
+        }
     }
     func downloadData() -> String {
         return "New Data! ! ! "
     }
-    
+    func downloadData2(completionHandler: (_ data: String) -> Void) {
+        completionHandler("New Data! ! ! ")
+    }
+    func downloadData3(completionHandler: @escaping (_ data: String) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            completionHandler("New Data! ! ! ")
+        }
+    }
 }
 
 struct EscapingBootcamp: View {
