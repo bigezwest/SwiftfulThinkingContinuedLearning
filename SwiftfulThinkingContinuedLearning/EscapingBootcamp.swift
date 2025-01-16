@@ -7,9 +7,20 @@
 
 import SwiftUI
 
+class EscapingViewModel: ObservableObject {
+    @Published var text: String = "Hello"
+    
+}
+
 struct EscapingBootcamp: View {
+    
+    @StateObject var vm = EscapingViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(vm.text)
+            .font(.largeTitle)
+            .fontWeight(.semibold)
+            .foregroundColor(.blue)
     }
 }
 
