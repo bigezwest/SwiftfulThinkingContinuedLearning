@@ -17,7 +17,7 @@ struct CustomerModel: Identifiable {
 class CodableViewModel: ObservableObject {
     @Published var customer: CustomerModel? = nil
     init() {
-        
+        getData()
     }
     func getData() {
         guard let data = getJSONData() else { return }
@@ -49,8 +49,6 @@ struct CodableBootcamp: View {
                 Text("Customer Name: \(customer.name)")
                 Text("Customer Points: \(customer.points)")
                 Text("Is Premium: \(customer.isPremium)")
-            } else {
-                Text("Loading...")
             }
         }
     }
