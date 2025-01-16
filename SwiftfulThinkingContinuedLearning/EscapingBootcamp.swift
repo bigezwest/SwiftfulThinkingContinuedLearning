@@ -10,6 +10,14 @@ import SwiftUI
 class EscapingViewModel: ObservableObject {
     @Published var text: String = "Hello"
     
+    func getData() {
+        let newData = downloadData()
+        text = newData
+    }
+    func downloadData() -> String {
+        return "New Data! ! ! "
+    }
+    
 }
 
 struct EscapingBootcamp: View {
@@ -21,6 +29,9 @@ struct EscapingBootcamp: View {
             .font(.largeTitle)
             .fontWeight(.semibold)
             .foregroundColor(.blue)
+            .onTapGesture {
+                vm.getData()
+            }
     }
 }
 
