@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TimerBootcamp: View {
     
-    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     
     // Current Time ------------------------------------------------------------
 /*
@@ -32,6 +32,10 @@ struct TimerBootcamp: View {
     @State var timeRemaining: String = ""
     let futureDate: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
     */
+    
+    // Animation Counter -------------------------------------------------------
+    @State var count: Int = 0
+    
     var body: some View {
         ZStack {
             RadialGradient(
@@ -42,11 +46,20 @@ struct TimerBootcamp: View {
 //            Text(dateFormatter.string(from: currentDate))     // CurrentDate
 //            Text(finishedText ?? "\(count)")                  // Count
 //            Text(timeRemaining)                               // Time Remaining
-                .font(.system(size: 100, weight: .semibold, design: .rounded))
-                .foregroundColor(.white)
-                .lineLimit(1)
-                .minimumScaleFactor(0.1)
-            
+//                .font(.system(size: 100, weight: .semibold, design: .rounded))
+//                .foregroundColor(.white)
+//                .lineLimit(1)
+//                .minimumScaleFactor(0.1)
+            HStack (spacing: 15) {
+                Circle()
+                    .offset(y: count == 1 ? -20 : 0)
+                Circle()
+                    .offset(y: count == 2 ? -20 : 0)
+                Circle()
+                    .offset(y: count == 3 ? -20 : 0)
+            }
+            .frame(width: 150)
+            .foregroundColor(.white)
         }
         // - .onReceive - currentDate ------------------------------------------
         /*
@@ -72,6 +85,12 @@ struct TimerBootcamp: View {
             updateTimeRemaining()
         })
          */
+        // - .onReceive - Animation COunter ------------------------------------
+            .onReceive(timer, perform: { _ in
+                withAnimation(.easeIn(duration: 0.5) ) {
+                    count = count == 3 ? 0 : count + 1
+                }
+            })
     }
     // - Countdown to Date function --------------------------------------------
     /*
