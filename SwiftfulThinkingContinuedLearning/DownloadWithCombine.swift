@@ -79,12 +79,13 @@ struct DownloadWithCombine: View {
     var body: some View {
         List {
             ForEach(vm.posts) { post in
-                VStack {
+                VStack (alignment: .leading) {
                     Text(post.title)
                         .font(.headline)
                     Text(post.body)
                         .foregroundColor(.gray)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
