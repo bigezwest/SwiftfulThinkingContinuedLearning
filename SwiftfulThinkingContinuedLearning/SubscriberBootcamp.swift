@@ -54,13 +54,30 @@ struct SubscriberBootcamp: View {
         VStack {
             Text("\(vm.count)")
                 .font(.largeTitle)
-            Text(vm.textIsValid.description)
+            
             TextField("type something here.. ", text: $vm.textFieldText)
                 .padding(.leading)
                 .frame(height: 55)
                 .font(.headline)
                 .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
                 .cornerRadius(10)
+                .overlay(
+                    ZStack {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.red)
+                            .opacity(
+                                vm.textFieldText.count < 1 ? 0.0 :
+                                vm.textIsValid ? 0 : 1.0)
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.green)
+                            .opacity(vm.textIsValid ? 1.0 : 0)
+                    }
+                        .font(.title)
+                        .padding(.trailing)
+                    , alignment: .trailing
+                    
+                )
+                    
         }
         .padding()
     }
