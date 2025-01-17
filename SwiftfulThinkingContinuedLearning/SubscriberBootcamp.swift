@@ -14,10 +14,12 @@ class SubscriberViewModel: ObservableObject {
     var cancellables = Set<AnyCancellable>()
     @Published var textFieldText: String = ""
     @Published var textIsValid: Bool = false
+    @Published var showButton: Bool = false
     
     init() {
         setUpTimer()
         addTextFieldSubscriber()
+        addButtonSubscriber()
     }
     
     func setUpTimer() {
@@ -43,6 +45,19 @@ class SubscriberViewModel: ObservableObject {
             .sink(receiveValue: { [weak self] (isValid) in
                 self?.textIsValid = isValid
             })
+            .store(in: &cancellables)
+    }
+    func addButtonSubscriber() {
+        $textIsValid
+            .combineLatest($count)
+            .sink { [weak self] (isValid, count) in
+                guard let self = self else { return }
+                if isValid && count >= 10 {
+                    self.showButton = true
+                } else {
+                    self.showButton = false
+                }
+            }
             .store(in: &cancellables)
     }
 }
@@ -78,6 +93,17 @@ struct SubscriberBootcamp: View {
                     , alignment: .trailing
                     
                 )
+            Button(action: {}, label: {
+                Text("Submit".uppercased())
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                    .opacity(vm.showButton ? 1 : 0.5)
+            })
+            .disabled(!vm.showButton)
                     
         }
         .padding()
