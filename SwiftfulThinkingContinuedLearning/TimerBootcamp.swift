@@ -11,6 +11,11 @@ struct TimerBootcamp: View {
     
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var currentDate: Date = Date()
+    var dateFormatter: DateFormatter{
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        return formatter
+    }
     
     var body: some View {
         ZStack {
@@ -19,7 +24,7 @@ struct TimerBootcamp: View {
                 center: .center,
                 startRadius: 5,
                 endRadius: 500)
-            Text(currentDate.description)
+            Text(dateFormatter.string(from: currentDate))
                 .font(.system(size: 100, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
                 .lineLimit(1)
