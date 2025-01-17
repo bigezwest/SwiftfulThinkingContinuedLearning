@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct TimerBootcamp: View {
+    
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    @State var currentDate: Date = Date()
+    
     var body: some View {
         ZStack {
             RadialGradient(
@@ -15,12 +19,16 @@ struct TimerBootcamp: View {
                 center: .center,
                 startRadius: 5,
                 endRadius: 500)
-            Text("Hi")
+            Text(currentDate.description)
                 .font(.system(size: 100, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
+            
         }
+        .onReceive(timer, perform: { value in
+            currentDate = value
+        })
     }
 }
 
