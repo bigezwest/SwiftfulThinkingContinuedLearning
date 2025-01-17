@@ -51,13 +51,7 @@ class DownloadWithCombineViewModel: ObservableObject {
             // 3. Recieve on main thread
             .receive(on: DispatchQueue.main)
             // 4. tryMap (Check that the data is good)
-            .tryMap { (data, response) -> Data in
-                guard let response = response as? HTTPURLResponse,
-                      response.statusCode >= 200 && response.statusCode < 300 else {
-                        throw URLError(.badServerResponse)
-                }
-                return data
-            }
+            .tryMap(handleOutput)
             // 5. Decode (Decode data into PostModel)
             .decode(type: [PostModel].self, decoder: JSONDecoder())
             // 6. sinc (Put the item into the app
@@ -69,7 +63,13 @@ class DownloadWithCombineViewModel: ObservableObject {
             // 7. Store (Cancel subscription if needed)
             .store(in: &candellables)
     }
-    
+    func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
+        guard let response = output.response as? HTTPURLResponse,
+              response.statusCode >= 200 && response.statusCode < 300 else {
+                throw URLError(.badServerResponse)
+        }
+        return output.data
+    }
 }
 
 struct DownloadWithCombine: View {
