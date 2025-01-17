@@ -6,20 +6,19 @@
 //
 
 import SwiftUI
+class FileManagerViewModel: ObservableObject {
+    @Published var image: UIImage? = nil
+    let imageName: String = "steve-jobs"
+    init() {
+        getImageFromAssetsFolder()
+    }
+    func getImageFromAssetsFolder() {
+        image = UIImage(named: imageName)
+    }
+}
 
 struct FileManagerBootcamp: View {
-    
-    class FileManagerViewModel: ObservableObject {
-        @Published var image: UIImage? = nil
-        let imageName: String = "steve-jobs"
-        init() {
-            getImageFromAssetsFolder()
-        }
-        func getImageFromAssetsFolder() {
-            image = UIImage(named: imageName)
-        }
-    }
-    
+        
     var body: some View {
         @State var vm = FileManagerViewModel()
         NavigationView {
