@@ -18,7 +18,7 @@ struct PostModel: Identifiable, Codable {
 class DownloadWithCombineViewModel: ObservableObject {
     
     @Published var posts: [PostModel] = []
-    var candellables = Set<AnyCancellable>()
+    var cancellables = Set<AnyCancellable>()
     
     init() {
         getPosts()
@@ -55,7 +55,7 @@ class DownloadWithCombineViewModel: ObservableObject {
             }, receiveValue: { [weak self] ( returnedPosts ) in
                 self?.posts = returnedPosts
             })
-            .store(in: &candellables)                                   // 7. Store (Cancel subscription if needed)
+            .store(in: &cancellables)                                   // 7. Store (Cancel subscription if needed)
     }
     func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
         guard let response = output.response as? HTTPURLResponse,
