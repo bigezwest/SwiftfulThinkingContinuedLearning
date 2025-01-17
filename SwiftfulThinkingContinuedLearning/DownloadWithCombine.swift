@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Combine
 
 struct PostModel: Identifiable, Codable {
-    let userID: Int
+    let userId: Int
     let id: Int
     let title: String
     let body: String
@@ -17,13 +18,56 @@ struct PostModel: Identifiable, Codable {
 class DownloadWithCombineViewModel: ObservableObject {
     
     @Published var posts: [PostModel] = []
+    var candellables = Set<AnyCancellable>()
     
     init() {
         getPosts()
         
     }
     func getPosts() {
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
+        /* Combine Discussion
+             1. Sign up for monthly subscription for package to be delivered
+             2. The vcompany would make hte package behind the scenes
+             3. Receive the packate at your front door
+             4. Make sure the box isn't damaged
+             5. Open and make sure the item is correct
+             6. Use the item
+             7. Cancellable at any time
+         
+            1. Create the publisher
+            2. Subscribe publisher on the background thread
+            3. Receive on main thread
+            4. tryMap (Check that the data is good)
+            5. decode (Decode data into PostModel)
+            6. sink (Put hte item into our app)
+            7. store (Cancel subscription if needed)
+         */
         
+        // 1. Create the publisher
+        URLSession.shared.dataTaskPublisher(for: url)
+            // 2. Subscribe the publisherf on background thread
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            // 3. Recieve on main thread
+            .receive(on: DispatchQueue.main)
+            // 4. tryMap (Check that the data is good)
+            .tryMap { (data, response) -> Data in
+                guard let response = response as? HTTPURLResponse,
+                      response.statusCode >= 200 && response.statusCode < 300 else {
+                        throw URLError(.badServerResponse)
+                }
+                return data
+            }
+            // 5. Decode (Decode data into PostModel)
+            .decode(type: [PostModel].self, decoder: JSONDecoder())
+            // 6. sinc (Put the item into the app
+            .sink(receiveCompletion: { (completion) in
+                print("COMPLETION: \(completion)")
+            }, receiveValue: { [weak self] ( returnedPosts ) in
+                self?.posts = returnedPosts
+            })
+            // 7. Store (Cancel subscription if needed)
+            .store(in: &candellables)
     }
     
 }
