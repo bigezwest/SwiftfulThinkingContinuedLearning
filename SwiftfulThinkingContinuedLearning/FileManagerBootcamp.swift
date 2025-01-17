@@ -10,23 +10,25 @@ import SwiftUI
 class LocalFileManager {
     static let instance = LocalFileManager()
     func saveImage(image: UIImage, name: String) {
-        guard let date = image.jpegData(compressionQuality: 1.0) else {
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
             print("Error getting data.")
             return
         }
-        let directory = FileManager.default.urls(
-            for: .documentDirectory,
-            in: .userDomainMask
-        )
-        let directory2 = FileManager.default.urls(
-            for: .cachesDirectory,
-            in: .userDomainMask
-        )
-        let directory3 = FileManager.default.temporaryDirectory
-        print(directory)
-        print(directory2)
-        print(directory3)
-//        data.write(to: )
+
+        guard let path = FileManager
+            .default
+            .urls(for: .cachesDirectory, in: .userDomainMask)
+            .first?
+            .appendingPathComponent("\(name).jpg") else {
+            print("Error getting path.")
+            return
+        }
+        do {
+            try data.write(to: path)
+            print("Success Saving Image")
+        } catch let error {
+            print("Error saving \(error)")
+        }
     }
 }
 
