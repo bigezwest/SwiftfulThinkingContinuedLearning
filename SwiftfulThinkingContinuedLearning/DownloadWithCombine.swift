@@ -44,24 +44,18 @@ class DownloadWithCombineViewModel: ObservableObject {
             7. store (Cancel subscription if needed)
          */
         
-        // 1. Create the publisher
-        URLSession.shared.dataTaskPublisher(for: url)
-            // 2. Subscribe the publisherf on background thread
-            .subscribe(on: DispatchQueue.global(qos: .background))
-            // 3. Recieve on main thread
-            .receive(on: DispatchQueue.main)
-            // 4. tryMap (Check that the data is good)
-            .tryMap(handleOutput)
-            // 5. Decode (Decode data into PostModel)
-            .decode(type: [PostModel].self, decoder: JSONDecoder())
-            // 6. sinc (Put the item into the app
-            .sink(receiveCompletion: { (completion) in
+        
+        URLSession.shared.dataTaskPublisher(for: url)                   // 1. Create the publisher
+            .subscribe(on: DispatchQueue.global(qos: .background))      // 2. Subscribe the publisherf on background thread
+            .receive(on: DispatchQueue.main)                            // 3. Recieve on main thread
+            .tryMap(handleOutput)                                       // 4. tryMap (Check that the data is good)
+            .decode(type: [PostModel].self, decoder: JSONDecoder())     // 5. Decode (Decode data into PostModel)
+            .sink(receiveCompletion: { (completion) in                  // 6. sinc (Put the item into the app
                 print("COMPLETION: \(completion)")
             }, receiveValue: { [weak self] ( returnedPosts ) in
                 self?.posts = returnedPosts
             })
-            // 7. Store (Cancel subscription if needed)
-            .store(in: &candellables)
+            .store(in: &candellables)                                   // 7. Store (Cancel subscription if needed)
     }
     func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
         guard let response = output.response as? HTTPURLResponse,
