@@ -23,13 +23,14 @@ class LocalFileManager {
             print("Error saving \(error)")
         }
     }
-    func getImage(name: String) {
+    func getImage(name: String) -> UIImage? {
         guard
             let path = getPathForImage(name: name)?.path,
             FileManager.default.fileExists(atPath: path) else {
             print("Error getting path")
-            return            
+            return nil
         }
+        return UIImage(contentsOfFile: path)
     }
 
     func getPathForImage(name: String) -> URL? {
