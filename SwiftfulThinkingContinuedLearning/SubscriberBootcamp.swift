@@ -17,6 +17,7 @@ class SubscriberViewModel: ObservableObject {
     
     init() {
         setUpTimer()
+        addTextFieldSubscriber()
     }
     
     func setUpTimer() {
@@ -38,7 +39,9 @@ class SubscriberViewModel: ObservableObject {
                     return false
                 }
             }
-            .assign(to: \.textIsValid, on: self)
+            .sink(receiveValue: { [weak self] (isValid) in
+                self?.textIsValid = isValid
+            })
             .store(in: &cancellables)
     }
 }
@@ -51,6 +54,7 @@ struct SubscriberBootcamp: View {
         VStack {
             Text("\(vm.count)")
                 .font(.largeTitle)
+            Text(vm.textIsValid.description)
             TextField("type something here.. ", text: $vm.textFieldText)
                 .padding(.leading)
                 .frame(height: 55)
