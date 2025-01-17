@@ -25,7 +25,16 @@ struct DownloadWithCombine: View {
     @StateObject var vm = DownloadWithCombineViewModel()
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(vm.posts) { post in
+                VStack {
+                    Text(post.title)
+                        .font(.headline)
+                    Text(post.body)
+                        .foregroundColor(.gray)
+                }
+            }
+        }
     }
 }
 
