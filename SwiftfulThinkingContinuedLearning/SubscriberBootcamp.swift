@@ -32,6 +32,7 @@ class SubscriberViewModel: ObservableObject {
     }
     func addTextFieldSubscriber() {
         $textFieldText
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .map { (text) -> Bool in
                 if text.count > 3 {
                     return true
