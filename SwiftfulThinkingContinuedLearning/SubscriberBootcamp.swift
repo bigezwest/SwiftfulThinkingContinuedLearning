@@ -23,6 +23,10 @@ class SubscriberViewModel: ObservableObject {
             .autoconnect()
             .sink { [weak self] _ in
                 self?.count += 1
+                
+                if let count = self?.count, count >= 10 {
+                    self?.timer?.cancel()
+                }
             }
     }
 }
