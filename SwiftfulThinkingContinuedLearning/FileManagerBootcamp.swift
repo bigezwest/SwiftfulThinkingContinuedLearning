@@ -9,7 +9,19 @@ import SwiftUI
 
 struct FileManagerBootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Image("steve-jobs")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 200, height: 200)
+                    .clipped()
+                    .cornerRadius(10)
+                Spacer()
+            }
+            .navigationTitle("File Manager")
+            
+        }
     }
 }
 
