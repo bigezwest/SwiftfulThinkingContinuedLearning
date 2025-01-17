@@ -27,6 +27,10 @@ struct TimerBootcamp: View {
     @State var finishedText: String? = nil
   */
     
+    // Countdown to Date -------------------------------------------------------
+    @State var timeRemaining: String = ""
+    let futureDate: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+    
     var body: some View {
         ZStack {
             RadialGradient(
@@ -34,8 +38,9 @@ struct TimerBootcamp: View {
                 center: .center,
                 startRadius: 5,
                 endRadius: 500)
-//            Text(dateFormatter.string(from: currentDate))   // CurrentDate
-//            Text(finishedText ?? "\(count)")              // Count
+//            Text(dateFormatter.string(from: currentDate))     // CurrentDate
+//            Text(finishedText ?? "\(count)")                  // Count
+            Text(timeRemaining)                               // Time Remaining
                 .font(.system(size: 100, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
                 .lineLimit(1)
@@ -59,6 +64,20 @@ struct TimerBootcamp: View {
             }
         })
          */
+        
+        // - .onReceive - timeRemaining ----------------------------------------
+        .onReceive(timer, perform: { _ in
+            updateTimeRemaining()
+        })
+    }
+    // - Countdown to Date function --------------------------------------------
+    func updateTimeRemaining() {
+        let remaining = Calendar.current.dateComponents(
+            [.hour, .minute, .second], from: Date(), to: futureDate)
+        let hour = remaining.hour ?? 0
+        let minute = remaining.minute ?? 0
+        let second = remaining.second ?? 0
+        timeRemaining = "\(hour):\(minute):\(second)"
     }
 }
 
