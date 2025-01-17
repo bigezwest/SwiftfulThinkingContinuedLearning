@@ -34,8 +34,9 @@ struct TimerBootcamp: View {
     */
     
     // Animation Counter -------------------------------------------------------
+    /*
     @State var count: Int = 0
-    
+    */
     var body: some View {
         ZStack {
             RadialGradient(
@@ -45,11 +46,16 @@ struct TimerBootcamp: View {
                 endRadius: 500)
 //            Text(dateFormatter.string(from: currentDate))     // CurrentDate
 //            Text(finishedText ?? "\(count)")                  // Count
-//            Text(timeRemaining)                               // Time Remaining
-//                .font(.system(size: 100, weight: .semibold, design: .rounded))
-//                .foregroundColor(.white)
-//                .lineLimit(1)
-//                .minimumScaleFactor(0.1)
+                                                                // Time Remaining
+            /*
+            Text(timeRemaining)                               // Time Remaining
+                .font(.system(size: 100, weight: .semibold, design: .rounded))
+                .foregroundColor(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.1)
+             */
+            // Animation Counter - HStack --------------------------------------
+            /*
             HStack (spacing: 15) {
                 Circle()
                     .offset(y: count == 1 ? -20 : 0)
@@ -60,6 +66,8 @@ struct TimerBootcamp: View {
             }
             .frame(width: 150)
             .foregroundColor(.white)
+             */
+            
         }
         // - .onReceive - currentDate ------------------------------------------
         /*
@@ -85,12 +93,15 @@ struct TimerBootcamp: View {
             updateTimeRemaining()
         })
          */
+        
         // - .onReceive - Animation COunter ------------------------------------
+        /*
             .onReceive(timer, perform: { _ in
                 withAnimation(.easeIn(duration: 0.5) ) {
                     count = count == 3 ? 0 : count + 1
                 }
             })
+         */
     }
     // - Countdown to Date function --------------------------------------------
     /*
