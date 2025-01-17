@@ -52,10 +52,14 @@ class FileManagerViewModel: ObservableObject {
     let manager = LocalFileManager.instance
     
     init() {
-        getImageFromAssetsFolder()
+//        getImageFromAssetsFolder()
+        getImageFromFileManager()
     }
     func getImageFromAssetsFolder() {
         image = UIImage(named: imageName)
+    }
+    func getImageFromFileManager() {
+        image = manager.getImage(name: imageName)
     }
     func saveImage() {
         guard let image = image else { return }
