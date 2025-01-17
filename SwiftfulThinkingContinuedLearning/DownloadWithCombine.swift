@@ -18,6 +18,14 @@ class DownloadWithCombineViewModel: ObservableObject {
     
     @Published var posts: [PostModel] = []
     
+    init() {
+        getPosts()
+        
+    }
+    func getPosts() {
+        
+    }
+    
 }
 
 struct DownloadWithCombine: View {
