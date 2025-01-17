@@ -24,12 +24,6 @@ class SubscriberViewModel: ObservableObject {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 self.count += 1
-                
-                if self.count >= 10 {
-                    for item in self.cancellables {
-                        item.cancel()                        
-                    }
-                }
             }
             .store(in: &cancellables)
     }
