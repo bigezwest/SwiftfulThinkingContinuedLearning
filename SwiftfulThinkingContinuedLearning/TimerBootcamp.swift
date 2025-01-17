@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TimerBootcamp: View {
     
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+//    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 3.0, on: .main, in: .common).autoconnect()
     
     // Current Time ------------------------------------------------------------
 /*
@@ -37,6 +38,10 @@ struct TimerBootcamp: View {
     /*
     @State var count: Int = 0
     */
+    
+    // TabView -----------------------------------------------------------------
+    @State var count: Int = 1
+    
     var body: some View {
         ZStack {
             RadialGradient(
@@ -67,7 +72,25 @@ struct TimerBootcamp: View {
             .frame(width: 150)
             .foregroundColor(.white)
              */
-            
+            TabView(selection: $count, content: {
+                Rectangle()
+                    .foregroundColor(.red)
+                    .tag(1)
+                Rectangle()
+                    .foregroundColor(.blue)
+                    .tag(2)
+                Rectangle()
+                    .foregroundColor(.green)
+                    .tag(3)
+                Rectangle()
+                    .foregroundColor(.orange)
+                    .tag(4)
+                Rectangle()
+                    .foregroundColor(.pink)
+                    .tag(5)
+            })
+            .frame(height: 200)
+            .tabViewStyle(PageTabViewStyle())
         }
         // - .onReceive - currentDate ------------------------------------------
         /*
@@ -102,6 +125,13 @@ struct TimerBootcamp: View {
                 }
             })
          */
+        
+        // - .onRecieve - TabView ----------------------------------------------
+        .onReceive(timer) { _ in
+            withAnimation(.default) {
+                count = count == 5 ? 1 : count + 1
+            }
+        }
     }
     // - Countdown to Date function --------------------------------------------
     /*
