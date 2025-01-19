@@ -11,6 +11,6 @@ class DownloadingImagesViewModel: ObservableObject {
 
     @Published var dataArray: [PhotoModel] = []
     
-    
+    let dataService = PhotoModelDataService.instance
     
 }
