@@ -18,13 +18,13 @@ class CacheManager {
         cache.totalCostLimit = 1024 * 1024 * 100
         return cache
     }()
-    func add(image: UIImage, name: String) {
+    func add(image: UIImage, name: String) -> String {
         imageCache.setObject(image, forKey: name as NSString)
-        print("Added to cache")
+        return "Added to cache"
     }
-    func remove(name: String) {
+    func remove(name: String) -> String {
         imageCache.removeObject(forKey: name as NSString)
-        print("Removed from cache")
+        return "Removed from cache"
     }
     func get(name: String) -> UIImage? {
         return imageCache.object(forKey: name as NSString)
@@ -36,6 +36,7 @@ class CacheViewModel: ObservableObject {
     
     @Published var startingImage: UIImage? = nil
     @Published var cachedImage: UIImage? = nil
+    @Published var infoMessage: String = ""
     let imageName: String = "steve-jobs"
     let manager = CacheManager.instance
     
@@ -47,13 +48,18 @@ class CacheViewModel: ObservableObject {
     }
     func savedToCache() {
         guard let image = startingImage else { return }
-        manager.add(image: image, name: imageName)
+        infoMessage = manager.add(image: image, name: imageName)
     }
     func removeFromCache() {
-        manager.remove(name: imageName)
+        infoMessage = manager.remove(name: imageName)
     }
     func getFromCache() {
-        cachedImage = manager.get(name: imageName)
+        if let returnedImage = manager.get(name: imageName) {
+            cachedImage = returnedImage
+            infoMessage = "Got image from Cache"
+        } else {
+            infoMessage = "Image not found"
+        }
     }
 }
 
@@ -73,6 +79,9 @@ struct NSCacheBootcamp: View {
                         .clipped()
                         .cornerRadius(10)
                 }
+                Text(vm.infoMessage)
+                    .font(.headline)
+                    .foregroundColor(.purple)
                 HStack {
                     Button(action: {
                         vm.savedToCache( )
