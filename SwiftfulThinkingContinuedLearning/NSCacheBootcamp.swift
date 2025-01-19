@@ -75,7 +75,7 @@ struct NSCacheBootcamp: View {
                 }
                 HStack {
                     Button(action: {
-                        
+                        vm.savedToCache( )
                     }, label: {
                         Text("Save to cache")
                             .font(.headline)
@@ -85,7 +85,7 @@ struct NSCacheBootcamp: View {
                             .cornerRadius(10)
                     })
                     Button(action: {
-                        
+                        vm.removeFromCache( )
                     }, label: {
                         Text("Delete from cache")
                             .font(.headline)
@@ -95,7 +95,24 @@ struct NSCacheBootcamp: View {
                             .cornerRadius(10)
                     })
                 }
-
+                Button(action: {
+                    vm.getFromCache( )
+                }, label: {
+                    Text("Get from cache")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.green)
+                        .cornerRadius(10)
+                })
+                if let image = vm.cachedImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 200, height: 200)
+                        .clipped()
+                        .cornerRadius(10)
+                }
                 Spacer()
             }
             .navigationTitle(Text("NSCache Bootcamp"))
