@@ -9,20 +9,27 @@ import SwiftUI
 
 struct DownloadingImageView: View {
     
-    @State var isLoading: Bool = true
+    @StateObject var loader: ImageLoadingViewModel
+    
+    init(url: String, key: String) {
+        _loader = StateObject(wrappedValue: ImageLoadingViewModel(url: url, key: key))
+    }
     
     var body: some View {
         ZStack {
-            if isLoading {
+            if loader.isLoading {
                 ProgressView()
-            } else {
-                Circle()
+            } else if let image = loader.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .clipShape(Circle())
             }
         }
     }
 }
 
 #Preview {
-    DownloadingImageView()
+    DownloadingImageView(url: "https://via.placeholder.com/600/92c952", key: "1")
         .frame(width:75, height: 75)
 }
+        
