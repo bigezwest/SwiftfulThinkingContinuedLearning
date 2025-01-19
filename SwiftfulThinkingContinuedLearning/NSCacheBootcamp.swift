@@ -35,6 +35,7 @@ class CacheManager {
 class CacheViewModel: ObservableObject {
     
     @Published var startingImage: UIImage? = nil
+    @Published var cachedImage: UIImage? = nil
     let imageName: String = "steve-jobs"
     let manager = CacheManager.instance
     
@@ -44,7 +45,16 @@ class CacheViewModel: ObservableObject {
     func getImageFromAsssetsFolder () {
         startingImage = UIImage(named: imageName)
     }
-    
+    func savedToCache() {
+        guard let image = startingImage else { return }
+        manager.add(image: image, name: imageName)
+    }
+    func removeFromCache() {
+        manager.remove(name: imageName)
+    }
+    func getFromCache() {
+        cachedImage = manager.get(name: imageName)
+    }
 }
 
 
