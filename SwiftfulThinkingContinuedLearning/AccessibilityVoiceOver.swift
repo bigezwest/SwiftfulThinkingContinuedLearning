@@ -20,9 +20,17 @@ struct AccessibilityVoiceOver: View {
                         Text("Volume")
                         Spacer()
                         Text(isActive ? "On" : "OFF")
+                            .accessibilityHidden(true)
                     }
                     .background(Color.black.opacity(0.001))
                     .onTapGesture {
+                        isActive.toggle()
+                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityAddTraits(.isButton)
+                    .accessibilityValue(isActive ? "is on" : "is off")
+                    .accessibilityHint("Double tap to toggle setting.")
+                    .accessibilityAction {
                         isActive.toggle()
                     }
 
@@ -34,12 +42,15 @@ struct AccessibilityVoiceOver: View {
                     Button("Favorites") {
 
                     }
+                    .accessibilityRemoveTraits(.isButton)
                     Button {
 
                     } label: {
                         Image(systemName: "heart.fill")
                     }
+                    
                     Text("Favorites")
+                        .accessibilityAddTraits(.isButton)
                         .onTapGesture {
 
                         }
@@ -52,6 +63,7 @@ struct AccessibilityVoiceOver: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.secondary)
                         .font(.caption)
+                        .accessibilityAddTraits(.isHeader)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
                             ForEach(0..<10) { x in
@@ -64,6 +76,13 @@ struct AccessibilityVoiceOver: View {
                                     Text("Item \(x)")
                                 }
                                 .onTapGesture {
+                                    
+                                }
+                                .accessibilityElement(children: .combine)
+                                .accessibilityAddTraits(.isButton)
+                                .accessibilityLabel("Item \(x). Image of Steve Jobs.")
+                                .accessibilityHint("Double tap to open.")
+                                .accessibilityAction {
                                     
                                 }
                             }
